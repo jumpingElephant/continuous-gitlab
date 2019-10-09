@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:12.3.4-ce.0
+    container_name: gitlab
+    hostname: gitlab
+    ports:
+      - 443:443
+      - 80:80
+      - 22:22
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine-v12.3.0
+    container_name: gitlab-runner
+    volumes:
+      - gitlab-runner-config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  gitlab-runner-config:
