@@ -17,5 +17,14 @@ services:
       - gitlab-runner-config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
 
+  nexus:
+    image: sonatype/nexus3:3.19.1
+    container_name: nexus
+    volumes:
+      - nexus-data:/nexus-data sonatype/nexus3
+    ports:
+      - 8081:8081
+
 volumes:
   gitlab-runner-config:
+  nexus-data:
